@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.koreait.myapplication.ch07.BookPersonActivity;
+
 public class MenuActivity extends AppCompatActivity {
 
     @Override
@@ -16,6 +18,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
     }
+    // 클릭이벤트 사용시 작성방법
     public void call(View v) {
 //        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("tel:010-1111-2222"));
         Intent intent = new Intent("android.intent.action.CALL", Uri.parse("tel:010-1111-2222"));
@@ -24,17 +27,19 @@ public class MenuActivity extends AppCompatActivity {
     public void moveToActivity(View v) {
         int id = v.getId();
         int B1 = R.id.menuBtn1; // R.id.[아이디명] 여기에 id 값이 저장되어있음
-        int B2 = R.id.menuBtn2; // R.id.[아이디명] 여기에 id 값이
-        int B3 = R.id.menuBtn3; // R.id.[아이디명] 여기에 id 값이
 
         Class c = null;
 
         if(id == B1){
             c = MainActivity.class;
-        } else if(id == B2){
+        } else if(id == R.id.menuBtn2){
             c = LinearActivity.class;
-        } else if(id == B3) {
+        } else if(id == R.id.menuBtn3) {
             c = ConstraintActivity.class;
+        } else if(id == R.id.menuBtn4) {
+            c = WriteActivity.class;
+        } else if(id == R.id.menuBtn5) {
+            c = BookPersonActivity.class;
         }
         // Intent
         Intent intent = new Intent(this, c);
