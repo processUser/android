@@ -45,6 +45,7 @@ public class WriteActivity extends AppCompatActivity {
         SimpleTextAdapter sta = new SimpleTextAdapter(msgList); // 연동
         rvList.setAdapter(sta);
 
+        /*
         // 인터페이스 객체화 가능? - 불가능..
         //1. 클래스 작성 필요
         View.OnClickListener event2 = new MyOnClickLisener();
@@ -58,6 +59,7 @@ public class WriteActivity extends AppCompatActivity {
             }
         };
         btnSend.setOnClickListener(event);
+         */
 
         //3.가장 간략하게 작성.
         btnSend.setOnClickListener(new View.OnClickListener() {
