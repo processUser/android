@@ -1,10 +1,18 @@
 package com.koreait.myapplication.picsum;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.koreait.myapplication.R;
 
 import java.util.List;
@@ -15,19 +23,38 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/*
+picsum 이미지 리스트(객체들)를 가져와
+백엔드 서버로 자료를받고
+(json,xml : data
+받은자료를 프론트 화면 뿌린다.
+리스트 (recyclerView)
+이미지 (Glide 라이브러리)
+통신 (retrofit2 라이브러리)
+*/
+
 public class PicsumActivity extends AppCompatActivity {
+    private RecyclerView rvList;
+    private PicsumAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_picsum);
+
+        //연결
+        rvList = findViewById(R.id.rvList);
+        adapter = new PicsumAdapter();
+
+        rvList.setAdapter(adapter);
+
         network();
     }
 
     private void network(){
 
         Retrofit rf = new Retrofit.Builder()
-                .baseUrl("https://picsum.photos/")
+                .baseUrl("https://picsum.photos")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build(); // build 패턴
 
@@ -42,10 +69,8 @@ public class PicsumActivity extends AppCompatActivity {
             public void onResponse(Call<List<PicsumVO>> call, Response<List<PicsumVO>> response) {
                 if(response.isSuccessful()) {
                     List<PicsumVO> list = response.body();
-                    Log.d("myLog", "------response 성공----");
-                    for(PicsumVO vo : list) {
-                        Log.d("myLog", vo.getAuthor());
-                    }
+                    adapter.setList(list);
+                    adapter.notifyDataSetChanged();
 
                 } else {
                     Log.d("myLog", "response 실패");
@@ -57,5 +82,49 @@ public class PicsumActivity extends AppCompatActivity {
                 Log.d("myLog", "통신 실패");
             }
         });
+    }
+}
+class PicsumAdapter extends RecyclerView.Adapter<PicsumAdapter.PicsumViewHolder> {
+    private List<PicsumVO> list;
+
+    public void setList(List<PicsumVO> list) {
+        this.list = list;
+    }
+
+    @NonNull
+    @Override
+    public PicsumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View v = inflater.inflate(R.layout.item_picsum,parent,false);
+        return new PicsumViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull PicsumViewHolder holder, int position) {
+        PicsumVO vo = list.get(position);
+        holder.setItem(vo);
+    }
+
+    @Override
+    public int getItemCount() {
+        return list == null ? 0 : list.size();
+    }
+
+    static class PicsumViewHolder extends RecyclerView.ViewHolder {
+        private ImageView ivImg;
+        private TextView tvAuthor;
+        private View v;
+
+        public PicsumViewHolder(View v){
+            super(v);
+            this.v = v;
+            ivImg = v.findViewById(R.id.ivImg);
+            tvAuthor = v.findViewById(R.id.tvAuthor);
+        }
+
+        public void setItem(PicsumVO vo){
+            Glide.with(v).load(vo.getDownload_url()).into(ivImg);
+            tvAuthor.setText(vo.getAuthor());
+        }
     }
 }
