@@ -8,7 +8,8 @@ public interface KobisService {
     // 일별 박스오피스
     @GET("boxoffice/searchDailyBoxOfficeList.json")
     Call<BoxOfficeResultBodyVO> boxOfficeSearchDailyBoxOfficeList(@Query("key") String key, @Query("targetDt") String targetDt);
+
     @GET("boxoffice/searchWeeklyBoxOfficeList.json")
-    Call<BoxOfficeResultBodyVO> boxOfficeSearchDailyBoxOfficeList(@Query("key") String key, @Query("targetDt") String targetDt, @Query("weekGb") String weekGb);
+    Call<BoxOfficeResultBodyVO> boxOfficeSearchWeeKBoxOfficeList(@Query("key") String key, @Query("targetDt") String targetDt, @Query("weekGb") String weekGb);
 
 }

@@ -29,12 +29,12 @@
             <Spinner
                 android:id="@+id/wkSpinner"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="70dp" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="clkSearch1"
+                android:onClick="clkSearchWeek"
                 android:text="검색" />
         </LinearLayout>
 

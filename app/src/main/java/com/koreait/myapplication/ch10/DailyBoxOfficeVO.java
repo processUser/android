@@ -6,7 +6,7 @@ public class DailyBoxOfficeVO {
     private String openDt; // 개봉일
     private String audiCnt; // 관람객 수
 
-        public String getRank() {
+    public String getRank() {
         return rank;
     }
 

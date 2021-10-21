@@ -29,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DailyBoxOfficeActivity extends AppCompatActivity {
 
-    private DailyBoxofficeAdapter adapter;
+    private BoxOfficeAdapter adapter;
 
     private DatePicker dpTargetDt;
     private RecyclerView rvList;
@@ -38,7 +38,7 @@ public class DailyBoxOfficeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_box_office);
-        adapter = new DailyBoxofficeAdapter();
+        adapter = new BoxOfficeAdapter();
 
         dpTargetDt = findViewById(R.id.dpTargetDt);
         rvList = findViewById(R.id.rvList);
@@ -98,6 +98,7 @@ public class DailyBoxOfficeActivity extends AppCompatActivity {
         Log.i("myLog", date);
     }
 }
+/*
 class DailyBoxofficeAdapter extends RecyclerView.Adapter<DailyBoxofficeAdapter.MyViewHolder>{
 
     private List<DailyBoxOfficeVO> list;
@@ -144,3 +145,5 @@ class DailyBoxofficeAdapter extends RecyclerView.Adapter<DailyBoxofficeAdapter.M
 
     }
 }
+
+ */

@@ -5,7 +5,9 @@ import java.util.List;
 public class BoxOfficeResultVO {
     private String boxofficeType;
     private String showRange;
+    private String yearWeekTime;
     private List<DailyBoxOfficeVO> dailyBoxOfficeList;
+    private List<DailyBoxOfficeVO> weeklyBoxOfficeList;
 
     public String getBoxofficeType() {
         return boxofficeType;
@@ -29,5 +31,21 @@ public class BoxOfficeResultVO {
 
     public void setDailyBoxOfficeList(List<DailyBoxOfficeVO> dailyBoxOfficeList) {
         this.dailyBoxOfficeList = dailyBoxOfficeList;
+    }
+
+    public String getYearWeekTime() {
+        return yearWeekTime;
+    }
+
+    public void setYearWeekTime(String yearWeekTime) {
+        this.yearWeekTime = yearWeekTime;
+    }
+
+    public List<DailyBoxOfficeVO> getWeeklyBoxOfficeList() {
+        return weeklyBoxOfficeList;
+    }
+
+    public void setWeeklyBoxOfficeList(List<DailyBoxOfficeVO> weeklyBoxOfficeList) {
+        this.weeklyBoxOfficeList = weeklyBoxOfficeList;
     }
 }

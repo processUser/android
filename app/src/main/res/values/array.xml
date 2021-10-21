@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="week_arry">
+    <string-array name="week_array">
         <item>주간</item>
         <item>주말</item>
         <item>주중</item>
