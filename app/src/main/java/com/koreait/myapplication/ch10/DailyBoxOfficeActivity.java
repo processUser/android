@@ -1,14 +1,20 @@
 package com.koreait.myapplication.ch10;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.koreait.myapplication.R;
-import com.koreait.myapplication.picsum.RetrofitService;
+import com.koreait.myapplication.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -23,13 +29,20 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DailyBoxOfficeActivity extends AppCompatActivity {
 
+    private DailyBoxofficeAdapter adapter;
+
     private DatePicker dpTargetDt;
+    private RecyclerView rvList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daily_box_office);
+        adapter = new DailyBoxofficeAdapter();
+
         dpTargetDt = findViewById(R.id.dpTargetDt);
+        rvList = findViewById(R.id.rvList);
+        rvList.setAdapter(adapter);
     }
 
     private void network(String targetDt) {
@@ -47,13 +60,15 @@ public class DailyBoxOfficeActivity extends AppCompatActivity {
             public void onResponse(Call<BoxOfficeResultBodyVO> call, Response<BoxOfficeResultBodyVO> res) {
                 if(res.isSuccessful()) {
                     BoxOfficeResultBodyVO vo = res.body();
-                    List<DailyBoxOfficeVO> list = vo.getBoxOfficeResult().getDailyBoxOfficeList();
 
-                    Log.i("myLog", list.size()+"개");
+                    BoxOfficeResultVO resultVo = vo.getBoxOfficeResult();
+                    List<DailyBoxOfficeVO> list = resultVo.getDailyBoxOfficeList();
 
-                    for(DailyBoxOfficeVO item : list){
-                        Log.i("myLog", item.getMovieNm());
-                    }
+
+                    List<DailyBoxOfficeVO> list2 = vo.getBoxOfficeResult().getDailyBoxOfficeList();
+
+                    adapter.setList(list);
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -64,6 +79,7 @@ public class DailyBoxOfficeActivity extends AppCompatActivity {
         });
 
     }
+
     public void clkSearch(View v) {
         int day = dpTargetDt.getDayOfMonth();
         int mon = dpTargetDt.getMonth() + 1;
@@ -80,5 +96,51 @@ public class DailyBoxOfficeActivity extends AppCompatActivity {
         network(date);
 
         Log.i("myLog", date);
+    }
+}
+class DailyBoxofficeAdapter extends RecyclerView.Adapter<DailyBoxofficeAdapter.MyViewHolder>{
+
+    private List<DailyBoxOfficeVO> list;
+
+    public void setList(List<DailyBoxOfficeVO> list) {
+        this.list = list;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View v = inflater.inflate(R.layout.item_daily_boxoffice,parent,false);
+        return new MyViewHolder(v);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        DailyBoxOfficeVO vo = list.get(position);
+        holder.setItem(vo);
+        //holder.setItem(list.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
+        return list == null ? 0 : list.size();
+    }
+
+
+    static class MyViewHolder extends RecyclerView.ViewHolder{
+        private TextView tvTitle;
+        private TextView tvAudienceCnt;
+
+        public MyViewHolder(View v){
+            super(v);
+
+            tvTitle = v.findViewById(R.id.tvTitle);
+            tvAudienceCnt = v.findViewById(R.id.tvAudienceCnt);
+        }
+        public void setItem(DailyBoxOfficeVO vo) {
+            tvTitle.setText(vo.getMovieNm());
+            tvAudienceCnt.setText(Utils.getNumberComma(vo.getAudiCnt())+" 명");
+        }
+
     }
 }

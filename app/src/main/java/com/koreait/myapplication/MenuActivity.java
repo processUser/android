@@ -9,8 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.koreait.myapplication.ch07.BookPersonActivity;
 import com.koreait.myapplication.ch10.DailyBoxOfficeActivity;
+import com.koreait.myapplication.ch10.WeekBoxOfficeActivity;
 import com.koreait.myapplication.picsum.PicsumActivity;
 
 public class MenuActivity extends AppCompatActivity {
@@ -48,6 +50,14 @@ public class MenuActivity extends AppCompatActivity {
             c = PicsumActivity.class;
         }else if(id == R.id.menuBtn8) {
             c = DailyBoxOfficeActivity.class;
+        }else if(id == R.id.menuBtn9) {
+            c = WeekBoxOfficeActivity.class;
+        }
+
+        if(c == null){
+            //에러메시지 띄우고
+            Snackbar.make(v, "준비중입니다.", Snackbar.LENGTH_SHORT).show();
+            return;
         }
         // Intent
         Intent intent = new Intent(this, c);

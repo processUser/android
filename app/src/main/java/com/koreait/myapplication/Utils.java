@@ -3,21 +3,22 @@ package com.koreait.myapplication;
 import android.widget.Toast;
 
 public class Utils {
+
     public static int perseStringToInt(String val) {
+        return parseStringToInt(val, 0);
+    }
 
-        int intVal = 0;
-        //예외처리
-        try {
-            intVal = Integer.parseInt(val);
-
-
-
+    public static int parseStringToInt(String val, int defVal){
+        try{
+            return Integer.parseInt(val);
         } catch (Exception e) {
-            // 예외가 발생되었을 때 실행하고 싶은 것을 여기에다 작성.
-            e.printStackTrace(); // 에러 내용 로그에 찍는다.
-        } finally { // finally 옵션
-            //에러 유무 상관없이 실행되어야 하는 것 작성.
+            return defVal;
         }
-        return intVal;
+    }
+    public static String getNumberComma(int val) {
+        return String.format("%,d",val);
+    }
+    public static String getNumberComma(String val) {
+        return String.format(getNumberComma(perseStringToInt(val)));
     }
 }

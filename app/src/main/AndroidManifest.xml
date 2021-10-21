@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.koreait.myapplication">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity
+            android:name=".ch10.WeekBoxOfficeActivity"
+            android:exported="false" />
         <activity
             android:name=".ch10.DailyBoxOfficeActivity"
             android:exported="false" />
@@ -42,5 +43,7 @@
         <activity android:name=".LinearActivity" />
         <activity android:name=".MainActivity" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
