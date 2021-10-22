@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".ch10.MovieListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ch10.WeekBoxOfficeActivity"
             android:exported="false" />
         <activity

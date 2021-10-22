@@ -1,4 +1,4 @@
-package com.koreait.myapplication.ch10;
+package com.koreait.myapplication.ch10.boxofficemodel;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ public class BoxOfficeResultVO {
     private String boxofficeType;
     private String showRange;
     private String yearWeekTime;
-    private List<DailyBoxOfficeVO> dailyBoxOfficeList;
-    private List<DailyBoxOfficeVO> weeklyBoxOfficeList;
+    private List<BoxOfficeVO> dailyBoxOfficeList;
+    private List<BoxOfficeVO> weeklyBoxOfficeList;
 
     public String getBoxofficeType() {
         return boxofficeType;
@@ -25,11 +25,11 @@ public class BoxOfficeResultVO {
         this.showRange = showRange;
     }
 
-    public List<DailyBoxOfficeVO> getDailyBoxOfficeList() {
+    public List<BoxOfficeVO> getDailyBoxOfficeList() {
         return dailyBoxOfficeList;
     }
 
-    public void setDailyBoxOfficeList(List<DailyBoxOfficeVO> dailyBoxOfficeList) {
+    public void setDailyBoxOfficeList(List<BoxOfficeVO> dailyBoxOfficeList) {
         this.dailyBoxOfficeList = dailyBoxOfficeList;
     }
 
@@ -41,11 +41,11 @@ public class BoxOfficeResultVO {
         this.yearWeekTime = yearWeekTime;
     }
 
-    public List<DailyBoxOfficeVO> getWeeklyBoxOfficeList() {
+    public List<BoxOfficeVO> getWeeklyBoxOfficeList() {
         return weeklyBoxOfficeList;
     }
 
-    public void setWeeklyBoxOfficeList(List<DailyBoxOfficeVO> weeklyBoxOfficeList) {
+    public void setWeeklyBoxOfficeList(List<BoxOfficeVO> weeklyBoxOfficeList) {
         this.weeklyBoxOfficeList = weeklyBoxOfficeList;
     }
 }

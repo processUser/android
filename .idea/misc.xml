@@ -24,8 +24,10 @@
         <entry key="..\:/android/app/src/main/res/layout/activity_book_person.xml" value="0.1935185185185185" />
         <entry key="..\:/android/app/src/main/res/layout/activity_daily_box_office.xml" value="0.1935185185185185" />
         <entry key="..\:/android/app/src/main/res/layout/activity_menu.xml" value="0.2046875" />
+        <entry key="..\:/android/app/src/main/res/layout/activity_movie_list.xml" value="0.20625" />
         <entry key="..\:/android/app/src/main/res/layout/activity_week_box_office.xml" value="0.36614583333333334" />
         <entry key="..\:/android/app/src/main/res/layout/item_daily_boxoffice.xml" value="0.36614583333333334" />
+        <entry key="..\:/android/app/src/main/res/layout/item_movie.xml" value="0.20625" />
       </map>
     </option>
   </component>

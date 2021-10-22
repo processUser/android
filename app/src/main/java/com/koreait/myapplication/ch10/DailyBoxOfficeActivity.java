@@ -1,24 +1,18 @@
 package com.koreait.myapplication.ch10;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.DatePicker;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.koreait.myapplication.R;
-import com.koreait.myapplication.Utils;
+import com.koreait.myapplication.ch10.boxofficemodel.BoxOfficeResultBodyVO;
+import com.koreait.myapplication.ch10.boxofficemodel.BoxOfficeResultVO;
+import com.koreait.myapplication.ch10.boxofficemodel.BoxOfficeVO;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -62,10 +56,10 @@ public class DailyBoxOfficeActivity extends AppCompatActivity {
                     BoxOfficeResultBodyVO vo = res.body();
 
                     BoxOfficeResultVO resultVo = vo.getBoxOfficeResult();
-                    List<DailyBoxOfficeVO> list = resultVo.getDailyBoxOfficeList();
+                    List<BoxOfficeVO> list = resultVo.getDailyBoxOfficeList();
 
 
-                    List<DailyBoxOfficeVO> list2 = vo.getBoxOfficeResult().getDailyBoxOfficeList();
+                    List<BoxOfficeVO> list2 = vo.getBoxOfficeResult().getDailyBoxOfficeList();
 
                     adapter.setList(list);
                     adapter.notifyDataSetChanged();
@@ -101,9 +95,9 @@ public class DailyBoxOfficeActivity extends AppCompatActivity {
 /*
 class DailyBoxofficeAdapter extends RecyclerView.Adapter<DailyBoxofficeAdapter.MyViewHolder>{
 
-    private List<DailyBoxOfficeVO> list;
+    private List<BoxOfficeVO> list;
 
-    public void setList(List<DailyBoxOfficeVO> list) {
+    public void setList(List<BoxOfficeVO> list) {
         this.list = list;
     }
 
@@ -117,7 +111,7 @@ class DailyBoxofficeAdapter extends RecyclerView.Adapter<DailyBoxofficeAdapter.M
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        DailyBoxOfficeVO vo = list.get(position);
+        BoxOfficeVO vo = list.get(position);
         holder.setItem(vo);
         //holder.setItem(list.get(position));
     }
@@ -138,7 +132,7 @@ class DailyBoxofficeAdapter extends RecyclerView.Adapter<DailyBoxofficeAdapter.M
             tvTitle = v.findViewById(R.id.tvTitle);
             tvAudienceCnt = v.findViewById(R.id.tvAudienceCnt);
         }
-        public void setItem(DailyBoxOfficeVO vo) {
+        public void setItem(BoxOfficeVO vo) {
             tvTitle.setText(vo.getMovieNm());
             tvAudienceCnt.setText(Utils.getNumberComma(vo.getAudiCnt())+" 명");
         }

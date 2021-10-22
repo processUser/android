@@ -1,24 +1,22 @@
 package com.koreait.myapplication.ch10;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.koreait.myapplication.R;
-import com.koreait.myapplication.Utils;
+import com.koreait.myapplication.ch10.boxofficemodel.BoxOfficeResultBodyVO;
+import com.koreait.myapplication.ch10.boxofficemodel.BoxOfficeResultVO;
+import com.koreait.myapplication.ch10.boxofficemodel.BoxOfficeVO;
 
 import java.util.List;
 
@@ -35,6 +33,7 @@ public class WeekBoxOfficeActivity extends AppCompatActivity {
 
     private DatePicker dpTargetDt;
     private RecyclerView rvList;
+    private TextView tvWeekly;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +43,7 @@ public class WeekBoxOfficeActivity extends AppCompatActivity {
 
         dpTargetDt = findViewById(R.id.dpTargetDt);
         rvList = findViewById(R.id.rvList);
+        tvWeekly = findViewById(R.id.tvWeekly);
         rvList.setAdapter(adapter);
 
         spinner = (Spinner) findViewById(R.id.wkSpinner);
@@ -74,10 +74,11 @@ public class WeekBoxOfficeActivity extends AppCompatActivity {
                     BoxOfficeResultBodyVO vo = res.body();
                     Log.d("myLog", "response 성공");
                     BoxOfficeResultVO resultVo = vo.getBoxOfficeResult();
-                    List<DailyBoxOfficeVO> list = resultVo.getWeeklyBoxOfficeList();
+                    List<BoxOfficeVO> list = resultVo.getWeeklyBoxOfficeList();
 
 
-                    List<DailyBoxOfficeVO> list2 = vo.getBoxOfficeResult().getWeeklyBoxOfficeList();
+                    //List<BoxOfficeVO> list2 = vo.getBoxOfficeResult().getWeeklyBoxOfficeList();
+                    tvWeekly.setText(vo.getBoxOfficeResult().getShowRange());
 
                     adapter.setList(list);
                     adapter.notifyDataSetChanged();
@@ -105,10 +106,6 @@ public class WeekBoxOfficeActivity extends AppCompatActivity {
         String weekGb;
         String date = String.format("%s%02d%02d",year,mon,day);
 
-
-        spinner = (Spinner) findViewById(R.id.wkSpinner);
-
-
         SpinnerActivity sa = new SpinnerActivity();
 //        spinner.setOnItemSelectedListener(sa);
         String strVal = spinner.getSelectedItem().toString(); // 값가져오기.
@@ -125,7 +122,6 @@ public class WeekBoxOfficeActivity extends AppCompatActivity {
         network(date, weekGb);
         Log.i("myLog", weekGb);
         Log.i("myLog", date);
-
     }
 
 }

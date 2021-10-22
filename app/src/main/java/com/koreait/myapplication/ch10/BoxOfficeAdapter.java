@@ -10,13 +10,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.koreait.myapplication.R;
 import com.koreait.myapplication.Utils;
+import com.koreait.myapplication.ch10.boxofficemodel.BoxOfficeVO;
 
 import java.util.List;
 
 public class BoxOfficeAdapter extends RecyclerView.Adapter<BoxOfficeAdapter.MyViewHolder> {
-    private List<DailyBoxOfficeVO> list;
+    private List<BoxOfficeVO> list;
 
-    public void setList(List<DailyBoxOfficeVO> list) {
+    public void setList(List<BoxOfficeVO> list) {
         this.list = list;
     }
 
@@ -30,7 +31,7 @@ public class BoxOfficeAdapter extends RecyclerView.Adapter<BoxOfficeAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        DailyBoxOfficeVO vo = list.get(position);
+        BoxOfficeVO vo = list.get(position);
         holder.setItem(vo);
     }
 
@@ -49,7 +50,7 @@ public class BoxOfficeAdapter extends RecyclerView.Adapter<BoxOfficeAdapter.MyVi
             tvTitle = v.findViewById(R.id.tvTitle);
             tvAudienceCnt = v.findViewById(R.id.tvAudienceCnt);
         }
-        public void setItem(DailyBoxOfficeVO vo) {
+        public void setItem(BoxOfficeVO vo) {
             tvTitle.setText(vo.getMovieNm());
             tvAudienceCnt.setText(Utils.getNumberComma(vo.getAudiCnt())+" 명");
         }
