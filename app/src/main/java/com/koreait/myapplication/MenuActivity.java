@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.android.material.snackbar.Snackbar;
 import com.koreait.myapplication.ch07.BookPersonActivity;
 import com.koreait.myapplication.ch10.DailyBoxOfficeActivity;
+import com.koreait.myapplication.ch10.MovieListActivity;
 import com.koreait.myapplication.ch10.WeekBoxOfficeActivity;
 import com.koreait.myapplication.picsum.PicsumActivity;
 
@@ -52,6 +53,8 @@ public class MenuActivity extends AppCompatActivity {
             c = DailyBoxOfficeActivity.class;
         }else if(id == R.id.menuBtn9) {
             c = WeekBoxOfficeActivity.class;
+        }else if(id == R.id.menuBtn10) {
+            c = MovieListActivity.class;
         }
 
         if(c == null){

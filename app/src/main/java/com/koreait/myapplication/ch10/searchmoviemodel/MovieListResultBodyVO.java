@@ -1,13 +1,13 @@
 package com.koreait.myapplication.ch10.searchmoviemodel;
 
 public class MovieListResultBodyVO {
-    private MovieListResultVO movieListResultVO;
+    private MovieListResultVO movieListResult;
 
-    public MovieListResultVO getMovieListResultVO() {
-        return movieListResultVO;
+    public MovieListResultVO getMovieListResult() {
+        return movieListResult;
     }
 
-    public void setMovieListResultVO(MovieListResultVO movieListResultVO) {
-        this.movieListResultVO = movieListResultVO;
+    public void setMovieListResult(MovieListResultVO movieListResult) {
+        this.movieListResult = movieListResult;
     }
 }

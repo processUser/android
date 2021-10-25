@@ -18,7 +18,7 @@
             android:id="@+id/tvRepNationNm"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="#ff000000"
+            android:background="#EFE1B3"
             android:layout_weight="1" />
     </LinearLayout>
 
@@ -31,7 +31,7 @@
             android:id="@+id/tvMovieNmEn"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="#ff000000"
+            android:background="#BCF1AD"
             android:layout_weight="1" />
         <TextView
             android:id="@+id/RepGenreNm"
